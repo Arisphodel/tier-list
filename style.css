@@ -232,6 +232,40 @@ Button
     transform: scale(1.5);
 }
 
+span.next-btn {
+    position: absolute;
+    color: white;
+    font-size: 50px;
+    right: 50px;
+    top: 50%;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-in;
+}
+
+span.next-btn.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+span.prev-btn {
+    position: absolute;
+    color: white;
+    font-size: 50px;
+    left: 50px;
+    top: 50%;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-in;
+}
+
+span.prev-btn.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 /*
 =============== 
 Sidebar
@@ -321,12 +355,31 @@ Full Image Modal
     width: 50%;
     top: 50%;
     left: 50%;
+    opacity: 0;
     transform: translate(-50%, -50%) scale(0.5);
     transition: all 0.25s ease-out;
 }
 
 .full-img.open {
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+}
+
+.full-img-skin {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: all 0.25s ease-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.full-img-skin.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: all;
 }
 
 .character-name {
@@ -394,6 +447,14 @@ Full Image Modal
 @media screen and (min-width: 1920px) {
     .full-img {
         width: 60%;
+    }
+
+    span.next-btn {
+        font-size: 100px;
+    }
+
+    span.prev-btn {
+        font-size: 100px;
     }
     
     .character-name {

@@ -14,6 +14,7 @@ const epic7Characters = [
         overall: 9.2,
         quote: `Second-in-Command of the Order of the Sword, Iseria is an Elf unable to return to her ancestral home of Dun Blyraia due to some reason. 
                 Known as the Knight of White Flowers, she has a calm and solemn personality.`, 
+        skin: "Iseria: Night of White Flowers",
     },
     {
         name: "Judge Kise",
@@ -31,6 +32,7 @@ const epic7Characters = [
         quote: `An heir to the Sixth World, Kise is leader of the Nocturnes. 
         She fought every battle against the Archdemon alongside the Guardian Kromcruz. 
         Though she can be sluggish and sharp-tongued, she cares greatly for her fellow Heirs.`,
+        skin: false,
     },
     {
         name: "Briar Witch Iseria",
@@ -47,6 +49,7 @@ const epic7Characters = [
         overall: 8.7,
         quote: `Once one of the noblest knights in the kingdom, she was on a hunt to find the Dark Witch when she was cursed by the witch, causing her to turn her blade toward her lover and friends. 
         The shock of her actions led her to lock herself in the witch's castle, surrounded by nothing but thornbushes and incapable of hurting anyone else.`,
+        skin: false,
     },
     {
         name: "Kise",
@@ -63,6 +66,7 @@ const epic7Characters = [
         overall: 8.9,
         quote: `Leader of the Nocturnes. 
         Having been forced to part with her lover, she now has a tendency to obsess over anything she loves.`,
+        skin: false,
     },
     {
         name: "Luna",
@@ -79,6 +83,7 @@ const epic7Characters = [
         overall: 7.8,
         quote: `Luna is a half-Dragon, half-Human knight that has been loyal to Wintenberg since the time of Queen Francesca. 
         Only a few know of the true feelings hidden behind her smile.`,
+        skin: false,
     },
     {
         name: "Cermia",
@@ -95,6 +100,7 @@ const epic7Characters = [
         overall: 8.5,
         quote: `A fiercely competitive but also horribly unlucky knight, she is very hot-headed and often gambles and loses everything. 
         Her impulsive nature forced her parents to give all of the inheritance to her sister Carrot, who provides her an allowance to live off of.`,
+        skin: false,
     },
     {
         name: "Diene",
@@ -111,6 +117,7 @@ const epic7Characters = [
         overall: 8.3,
         quote: `Diene, Saint of Ezera, received the Goddess's divine revelation and fearlessly led the world to victory against the Archdemon, even without the Heir of the Covenant. 
         Later, she became Ezera's queen.`,
+        skin: false,
     },
     {
         name: "Serila",
@@ -128,6 +135,7 @@ const epic7Characters = [
         quote: `With her glamorous beauty and enchanting smile, she's the quintessential witch. 
         She loves money, especially when using it to decorate herself with beautiful things. 
         She doesn't go anywhere without her magical weapon, Chatty.`,
+        skin: false,
     },
     {
         name: "Seaside Bellona",
@@ -144,6 +152,7 @@ const epic7Characters = [
         overall: 9.1,
         quote: `Bellona came to provide Reingar PSC with any help they needed to assist visitors from Reingar. 
         Although she says she's here to watch over Sez, it seems that her true goal is to relax in the resort.`,
+        skin: false,
     },
     {
         name: "Top Model Luluca",
@@ -160,6 +169,7 @@ const epic7Characters = [
         overall: 8.8,
         quote: `A carefree model fighting for her friends and the universe After taking the wandering designer Lilibet's advice, she became a model and now fights wearing a specialized suit. 
         Her goal is to defeat Straze, a corrupt designer who took control of Fastus, a tailor's knife that can even slice the universe, and his model, Roana.`, 
+        skin: false,
     },
     {
         name: "Tempest Surin",
@@ -178,6 +188,7 @@ const epic7Characters = [
         As a warrior and daughter of a decorated general, she fought in several wars. 
         However, as the empire fell, she was forced to flee to Ritania. 
         With the help of a knight from Taranor she was able to adapt to this new life and now strives to pay back the favor.`,
+        skin: "Tempest Surin: Autumnal Beauty",
     },
     {
         name: "Karin",
@@ -194,6 +205,7 @@ const epic7Characters = [
         overall: 8.3,
         quote: `Second Lieutenant in the Public Security Club of Reingar, Karin struggles to maintain order in the Magical Academy, a place brimming with dangerous creativity. 
         Many call her the consience and the real big boss of the Public Security Club.`,
+        skin: "Karin: Shore Patrol",
     },
     {
         name: "Fallen Cecilia",
@@ -210,6 +222,7 @@ const epic7Characters = [
         overall: 8.6,
         quote: `Fallen Cecilia is chasing a mage who turned her family into dark magic stones, 
         dreaming of the day she can get her revenge and join her loved ones again.`,
+        skin: "Fallen Cecilia: Snow White Warmth",
     },
     {
         name: "Specter Tenebria",
@@ -226,6 +239,7 @@ const epic7Characters = [
         overall: 9.2,
         quote: `While searching for a form that she liked, Tenebria enjoyed destroying people's minds. 
         Her greatest joy came from watching them die from the poison of her illusions.`,
+        skin: "Specter Tenebria: Dark Tyrant",
     },
 ];
 
@@ -344,14 +358,17 @@ epic7Characters.forEach((character, index) => {
 const characterImg = document.querySelectorAll('.character-img');
 const fullImgModal = document.querySelector('.full-img-modal');
 const fullImg = document.querySelector('.full-img');
+const fullImgSkin = document.querySelector('.full-img-skin');
 const desc = document.querySelector('.desc');
 const characterName = document.querySelector('.character-name');
 const characterNameUnderline = document.querySelector('.character-name-underline');
+const prevBtn = document.querySelector('.prev-btn');
 
 characterImg.forEach(image => {
     image.addEventListener('click', () => {
         const imgSrc = image.getAttribute('src').slice(13, 19);
         const target = image.dataset.id;
+        const nextBtn = document.querySelector('.next-btn');
         
         desc.textContent = epic7Characters[target].quote;
         characterName.textContent = epic7Characters[target].name;
@@ -363,17 +380,43 @@ characterImg.forEach(image => {
         characterNameUnderline.classList.add('open');
         desc.classList.add('open');
         console.log(imgSrc);
+
+        if (epic7Characters[target].skin) {
+            nextBtn.classList.add('active');
+        } else {
+            nextBtn.classList.remove('active');
+        }
+
+        nextBtn.addEventListener('click', () => {
+            fullImg.classList.remove('open');
+            fullImgSkin.setAttribute('src', '');
+            fullImgSkin.setAttribute('src', `full-img/skins/${imgSrc}s01_idle_normal.png`);
+            //characterName.textContent = epic7Characters[target].skin;
+            fullImgSkin.classList.add('open');
+            nextBtn.classList.remove('active');
+            prevBtn.classList.add('active');
+        });
+
+        prevBtn.addEventListener('click', () => {
+            fullImgSkin.classList.remove('open');
+            fullImg.classList.add('open');
+            nextBtn.classList.add('active');
+            prevBtn.classList.remove('active');
+        });
     });
 });
 
 fullImgModal.addEventListener('click', (e) => {
     if (e.target.classList.contains('full-img-modal') 
     || e.target.classList.contains('full-img') 
-    || e.target.classList.contains('desc')) {
+    || e.target.classList.contains('desc')
+    || e.target.classList.contains('full-img-skin')) {
         fullImgModal.classList.remove('open');
         fullImg.classList.remove('open');
+        fullImgSkin.classList.remove('open');
         characterName.classList.remove('open');
         characterNameUnderline.classList.remove('open');
         desc.classList.remove('open');
+        prevBtn.classList.remove('active');
     }
 });

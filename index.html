@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic 7 Tier List</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar-btn">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+
+    <nav class="sidebar">
+        <div class="nav-links">
+            <a href="#" class="nav-link" >
+                <i class="material-icons">home</i>
+                Home
+            </a>
+            <a href="#" class="nav-link">
+                <i class="material-icons">grade</i>
+                Favorites
+            </a>
+            <a href="#" class="nav-link active">
+                <i class="material-icons">favorite</i>
+                Waifus
+            </a>
+            <a href="#" class="nav-link">
+                <i class="material-icons">pets</i>
+                Pets
+            </a>
+            <a href="#" class="nav-link">
+                <i class="material-icons">label_important</i>
+                RTA
+            </a>
+            <div class="theme">
+            <i class="material-icons theme-button">nightlight_round</i>
+            <i class="material-icons rgb">invert_colors</i>
+            </div>
+        </div>
+       
+        <div class="nav-overlay"></div>
+    </nav>
+    
+    <!-- Tier list -->
+    <section class="main">
+        <header>
+            <h1>Tier List</h1>
+            <div class="underline"></div>
+        </header>
+        <div class="btn-container">
+            <div class="stars-btn-container">
+                <span class="all-btn">All</span>
+                <span class="stars-btn">3⭐</span>
+                <span class="stars-btn">4⭐</span>
+                <span class="stars-btn">5⭐</span>
+            </div>
+            <div class="element-btn-container">
+                <span class="all-btn">All</span>
+                <span class="element-btn"><img src="elements/cm_icon_profire.png" alt=""></span>
+                <span class="element-btn"><img src="elements/cm_icon_proice.png" alt=""></span>
+                <span class="element-btn"><img src="elements/cm_icon_prowind.png" alt=""></span>
+                <span class="element-btn"><img src="elements/cm_icon_prolight.png" alt=""></span>
+                <span class="element-btn"><img src="elements/cm_icon_prodark.png" alt=""></span>
+            </div>
+            <div class="class-btn-container">
+                <span class="all-btn">All</span>
+                <span class="class-btn"><img src="class/cm_icon_role_warrior.png" alt=""></span>
+                <span class="class-btn"><img src="class/cm_icon_role_knight.png" alt=""></span>
+                <span class="class-btn"><img src="class/cm_icon_role_ranger.png" alt=""></span>
+                <span class="class-btn"><img src="class/cm_icon_role_assassin.png" alt=""></span>
+                <span class="class-btn"><img src="class/cm_icon_role_mage.png" alt=""></span>
+                <span class="class-btn"><img src="class/cm_icon_role_manauser.png" alt=""></span>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Stars</th>
+                    <th>Character</th>
+                    <th>World</th>
+                    <th>Abyss</th>
+                    <th>Boss Hunt</th>
+                    <th>Raid</th>
+                    <th>Arena</th>
+                    <th>Guild Wars</th>
+                    <th>Overall</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                 <!-- Example 
+                <tr>
+                    <td>5⭐</td>
+                    <td class="character-img-container">
+                        <img src="pica7 fotinha/c1024_s.png" class="character-img" alt="">
+                        <p>Iseria</p></td>
+                    <td>9</td>
+                    <td>9</td>
+                    <td>9.5</td>
+                    <td>9.5</td>
+                    <td>9</td>
+                    <td>9</td>
+                    <td>9.2</td>
+                    <td><button class="moreinfo-btn">More Info</button></td>
+                </tr>
+                -->
+            </tbody> 
+        </table>
+    </section>
+
+    <!-- Full Image Modal -->
+    <div class="full-img-modal">
+        <img src="" alt="" class="full-img">
+        <h4 class="character-name"></h4>
+        <div class="character-name-underline"></div>
+        <q class="desc"></q>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

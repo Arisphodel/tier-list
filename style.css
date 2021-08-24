@@ -104,7 +104,6 @@ Image
     border-radius: 30px;
     object-fit: cover;
     margin-bottom: 2px;
-    transition: 0.3s ease-in-out;
 }
 
 .character-img:hover {
@@ -358,6 +357,9 @@ Full Image Modal
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.5);
     transition: all 0.25s ease-out;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .full-img.open {
@@ -374,6 +376,9 @@ Full Image Modal
     transition: all 0.25s ease-out;
     opacity: 0;
     pointer-events: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .full-img-skin.open {
@@ -446,7 +451,11 @@ Full Image Modal
 
 @media screen and (min-width: 1920px) {
     .full-img {
-        width: 60%;
+        width: 1000px;
+    }
+
+    .full-img-skin {
+        width: 1000px;
     }
 
     span.next-btn {

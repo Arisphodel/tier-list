@@ -8,10 +8,12 @@ const epic7Characters = [
         raid: 9.5,
         arena: 9,
         "guild wars": 9,
-        class: "archer",
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
+        class: "ranger",
         type: "earth",
         image: "c1024_s",
-        overall: 9.2,
         quote: `Second-in-Command of the Order of the Sword, Iseria is an Elf unable to return to her ancestral home of Dun Blyraia due to some reason. 
                 Known as the Knight of White Flowers, she has a calm and solemn personality.`, 
         skin: "Iseria: Night of White Flowers",
@@ -19,16 +21,18 @@ const epic7Characters = [
     {
         name: "Judge Kise",
         stars: 5,
-        world: 8,
+        world: 9,
         abyss: 8,
         "boss hunt": 8,
         raid: 9,
         arena: 9.5,
         "guild wars": 9.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "warrior",
         type: "light",
         image: "c2006_s",
-        overall: 8.8,
         quote: `An heir to the Sixth World, Kise is leader of the Nocturnes. 
         She fought every battle against the Archdemon alongside the Guardian Kromcruz. 
         Though she can be sluggish and sharp-tongued, she cares greatly for her fellow Heirs.`,
@@ -43,10 +47,12 @@ const epic7Characters = [
         raid: 8,
         arena: 10,
         "guild wars": 9.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "ranger",
         type: "dark",
         image: "c2024_s",
-        overall: 8.7,
         quote: `Once one of the noblest knights in the kingdom, she was on a hunt to find the Dark Witch when she was cursed by the witch, causing her to turn her blade toward her lover and friends. 
         The shock of her actions led her to lock herself in the witch's castle, surrounded by nothing but thornbushes and incapable of hurting anyone else.`,
         skin: false,
@@ -60,10 +66,12 @@ const epic7Characters = [
         raid: 9,
         arena: 9,
         "guild wars": 8.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "assassin",
         type: "ice",
         image: "c1006_s",
-        overall: 8.9,
         quote: `Leader of the Nocturnes. 
         Having been forced to part with her lover, she now has a tendency to obsess over anything she loves.`,
         skin: false,
@@ -77,10 +85,12 @@ const epic7Characters = [
         raid: 8,
         arena: 7,
         "guild wars": 7.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "warrior",
         type: "ice",
         image: "c1066_s",
-        overall: 7.8,
         quote: `Luna is a half-Dragon, half-Human knight that has been loyal to Wintenberg since the time of Queen Francesca. 
         Only a few know of the true feelings hidden behind her smile.`,
         skin: false,
@@ -94,10 +104,12 @@ const epic7Characters = [
         raid: 8,
         arena: 8.5,
         "guild wars": 9,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "warrior",
         type: "fire",
         image: "c1079_s",
-        overall: 8.5,
         quote: `A fiercely competitive but also horribly unlucky knight, she is very hot-headed and often gambles and loses everything. 
         Her impulsive nature forced her parents to give all of the inheritance to her sister Carrot, who provides her an allowance to live off of.`,
         skin: false,
@@ -111,10 +123,12 @@ const epic7Characters = [
         raid: 9,
         arena: 8,
         "guild wars": 8,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        }, 
         class: "soul weaver",
         type: "ice",
         image: "c1076_s",
-        overall: 8.3,
         quote: `Diene, Saint of Ezera, received the Goddess's divine revelation and fearlessly led the world to victory against the Archdemon, even without the Heir of the Covenant. 
         Later, she became Ezera's queen.`,
         skin: false,
@@ -128,10 +142,12 @@ const epic7Characters = [
         raid: 8,
         arena: 7.5,
         "guild wars": 7.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "mage",
         type: "fire",
         image: "c1040_s",
-        overall: 7.9,
         quote: `With her glamorous beauty and enchanting smile, she's the quintessential witch. 
         She loves money, especially when using it to decorate herself with beautiful things. 
         She doesn't go anywhere without her magical weapon, Chatty.`,
@@ -146,10 +162,12 @@ const epic7Characters = [
         raid: 9,
         arena: 9,
         "guild wars": 9.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "ranger",
         type: "ice",
         image: "c5071_s",
-        overall: 9.1,
         quote: `Bellona came to provide Reingar PSC with any help they needed to assist visitors from Reingar. 
         Although she says she's here to watch over Sez, it seems that her true goal is to relax in the resort.`,
         skin: false,
@@ -163,10 +181,12 @@ const epic7Characters = [
         raid: 8,
         arena: 9.5,
         "guild wars": 10,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "mage",
         type: "dark",
         image: "c2082_s",
-        overall: 8.8,
         quote: `A carefree model fighting for her friends and the universe After taking the wandering designer Lilibet's advice, she became a model and now fights wearing a specialized suit. 
         Her goal is to defeat Straze, a corrupt designer who took control of Fastus, a tailor's knife that can even slice the universe, and his model, Roana.`, 
         skin: false,
@@ -180,10 +200,12 @@ const epic7Characters = [
         raid: 7,
         arena: 9.5,
         "guild wars": 10,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "assassin",
         type: "light",
         image: "c2065_s",
-        overall: 8.0,
         quote: `A girl from a far eastern empire. 
         As a warrior and daughter of a decorated general, she fought in several wars. 
         However, as the empire fell, she was forced to flee to Ritania. 
@@ -199,10 +221,12 @@ const epic7Characters = [
         raid: 8,
         arena: 8.5,
         "guild wars": 8.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "assassin",
         type: "ice",
         image: "c1011_s",
-        overall: 8.3,
         quote: `Second Lieutenant in the Public Security Club of Reingar, Karin struggles to maintain order in the Magical Academy, a place brimming with dangerous creativity. 
         Many call her the consience and the real big boss of the Public Security Club.`,
         skin: "Karin: Shore Patrol",
@@ -216,10 +240,12 @@ const epic7Characters = [
         raid: 8.5,
         arena: 10,
         "guild wars": 10,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "knight",
         type: "dark",
         image: "c2002_s",
-        overall: 8.6,
         quote: `Fallen Cecilia is chasing a mage who turned her family into dark magic stones, 
         dreaming of the day she can get her revenge and join her loved ones again.`,
         skin: "Fallen Cecilia: Snow White Warmth",
@@ -233,10 +259,12 @@ const epic7Characters = [
         raid: 9.5,
         arena: 9.5,
         "guild wars": 9.5,
+        overall: function() {
+            return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
+        },
         class: "mage",
         type: "dark",
         image: "c2050_s",
-        overall: 9.2,
         quote: `While searching for a form that she liked, Tenebria enjoyed destroying people's minds. 
         Her greatest joy came from watching them die from the poison of her illusions.`,
         skin: "Specter Tenebria: Dark Tyrant",
@@ -328,7 +356,7 @@ epic7Characters.forEach((character, index) => {
     tdRaid.textContent = character.raid;
     tdArena.textContent = character.arena;
     tdGuild.textContent = character["guild wars"];
-    tdOverall.textContent = character.overall;
+    tdOverall.textContent = character.overall();
     tdBtn.textContent = 'More Info';
 
     tdImg.setAttribute('src', `portrait-img/${character.image}.png`);

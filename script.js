@@ -263,7 +263,7 @@ navLinksOverlay.addEventListener('click', (e) => {
 
 
 /* Random Theme Generator */
-const themeBtn = document.querySelector('.theme-button');
+const themeBtn = document.querySelector('.theme');
 const rgbButton = document.querySelector('.rgb');
 const rootCSS = document.querySelector(':root');
 const numberHex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
@@ -418,24 +418,5 @@ fullImgModal.addEventListener('click', (e) => {
         characterNameUnderline.classList.remove('open');
         desc.classList.remove('open');
         prevBtn.classList.remove('active');
-    }
-});
-
-// MISC 
-const explanationBtn = document.querySelector('.explanation-btn');
-const explanationImgModal = document.querySelector('.explanation-img-modal');
-const explanationImg = document.querySelector('.explanation-img');
-
-explanationBtn.addEventListener('click', () => {
-    explanationImg.classList.toggle('open');
-    explanationImgModal.classList.toggle('open');
-});
-
-explanationImgModal.addEventListener('click', (e) => {
-    console.log(e);
-    if (e.target.classList.contains('explanation-img-modal')
-    || (e.target.classList.contains('explanation-img'))) {
-        explanationImg.classList.remove('open');
-        explanationImgModal.classList.remove('open');
     }
 });

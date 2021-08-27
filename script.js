@@ -361,6 +361,7 @@ epic7Characters.forEach((character, index) => {
 
     tdImg.setAttribute('src', `portrait-img/${character.image}.png`);
     tdImg.dataset.id = index;
+    tdBtn.dataset.id = index;
 
     tdImgContainer.classList.add('character-img-container');
     tdImg.classList.add('character-img');
@@ -447,4 +448,35 @@ fullImgModal.addEventListener('click', (e) => {
         desc.classList.remove('open');
         prevBtn.classList.remove('active');
     }
+});
+
+// More Info Modal 
+const moreInfoBtn = document.querySelectorAll('.moreinfo-btn');
+const moreInfoImgModal = document.querySelector('.more-info-img-modal');
+const moreInfoImgContainer = document.querySelector('.more-info-img-container');
+
+moreInfoBtn.forEach(button => {
+    button.addEventListener('click', () => {
+        const moreInfoImg = document.querySelector('.more-info-img');
+        const gif = document.querySelector('#gif');
+        const target = button.dataset.id;
+        
+        moreInfoImg.setAttribute('src', '');
+        gif.setAttribute('src', '');
+        moreInfoImg.setAttribute('src',`more-info-img/${epic7Characters[target].name}-more-info.png`);
+        gif.setAttribute('src', `more-info-img/${epic7Characters[target].name}-more-info.gif`);
+
+        moreInfoImg.addEventListener('error', () => {
+            moreInfoImg.setAttribute('src', 'more-info-img/giphy.webp');
+        });
+      
+        moreInfoImgContainer.classList.add('active');
+        moreInfoImgModal.classList.add('active');
+    });
+});
+
+
+moreInfoImgModal.addEventListener('click', () => {
+    moreInfoImgContainer.classList.remove('active');
+    moreInfoImgModal.classList.remove('active');
 });

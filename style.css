@@ -66,6 +66,22 @@ Table
     transition: all 0.4s;
 }
 
+th {
+    cursor: pointer;
+}
+
+th:nth-child(10n) {
+    cursor: unset;
+}
+
+th:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+th:nth-child(10n):hover {
+    background-color: var(--main-color);
+}
+
 .table th,
 .table td {
     padding: 1rem 15px;
@@ -162,7 +178,7 @@ Button
     transition: all 0.4s;
     border-radius: 4px;
 }
-
+/* Star Button */
 .stars-btn {
     padding: 8px 1rem;
     border: solid thin var(--main-color);
@@ -171,6 +187,17 @@ Button
     border-radius: 4px;
 }
 
+.stars-btn.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.all-star-button.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+/* Element Button */
 .element-btn-container {
     margin-left: 30px;
 }
@@ -183,10 +210,21 @@ Button
     border-radius: 4px;
 }
 
+.element-btn.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.all-element-button.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
 .element-btn img {
     width: 15px;
 }
 
+/* Class Button */
 .class-btn-container {
     margin-left: 30px;
 }
@@ -197,6 +235,16 @@ Button
     cursor: pointer;
     transition: all 0.4s;
     border-radius: 4px;
+}
+
+.class-btn.active {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.all-class-button.active {
+    background-color: var(--main-color);
+    color: white;
 }
 
 .class-btn img {
@@ -331,6 +379,7 @@ Sidebar
 Full Image Modal
 ===============
 */
+
 .full-img-modal {
     background: rgba(0, 0, 0, 0.8);
     position: fixed;

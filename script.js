@@ -722,7 +722,7 @@ const epic7Characters = [
             return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
         },
         class: "warrior",
-        type: "dark",
+        type: "light",
         image: "c2008_s",
         quote: `A destructive super cute mercenary, the nickname of Super Cute Guardian of the Red Flame fits Armin perfectly. 
         She assures that she will defend fiercely, indifferent of what she destroys while doing so.`,
@@ -1617,6 +1617,8 @@ const epic7Characters = [
     },
 ];
 
+epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
+
 /* Sidebar */
 const sideBarToggle = document.querySelector('.sidebar-btn');
 const navLinksOverlay = document.querySelector('.nav-overlay');
@@ -1634,7 +1636,6 @@ navLinksOverlay.addEventListener('click', (e) => {
         navLinksOverlay.classList.remove('nav-overlay-active');
     }
 });
-
 
 /* Random Theme Generator */
 const themeBtn = document.querySelector('.theme');
@@ -1677,59 +1678,61 @@ function changeSiteColor() {
 }
 
 /* Characters */
-epic7Characters.forEach((character, index) => {
-    const tBody = document.querySelector('tbody');
-    const tr = document.createElement('tr');
-    const tdStar = document.createElement('td');
-    const tdImgContainer = document.createElement('td');
-    const tdWorld = document.createElement('td');
-    const tdAbyss = document.createElement('td');
-    const tdBoss = document.createElement('td');
-    const tdRaid = document.createElement('td');
-    const tdArena = document.createElement('td');
-    const tdGuild = document.createElement('td');
-    const tdOverall = document.createElement('td');
-    const tdBtnContainer = document.createElement('td');
-    const tdImg = document.createElement('img');
-    const tdBtn = document.createElement('btn');
-    const paragraph = document.createElement('p');
+const tBody = document.querySelector('tbody');
 
-    tdStar.textContent = character.stars + '⭐';
-    paragraph.textContent = character.name;
-    tdWorld.textContent = character.world
-    tdAbyss.textContent = character.abyss;
-    tdBoss.textContent = character["boss hunt"];
-    tdRaid.textContent = character.raid;
-    tdArena.textContent = character.arena;
-    tdGuild.textContent = character["guild wars"];
-    tdOverall.textContent = character.overall();
-    tdBtn.textContent = 'More Info';
+function showCharacters(arr) {
+    arr.forEach((character, index) => {
+        const tr = document.createElement('tr');
+        const tdStar = document.createElement('td');
+        const tdImgContainer = document.createElement('td');
+        const tdWorld = document.createElement('td');
+        const tdAbyss = document.createElement('td');
+        const tdBoss = document.createElement('td');
+        const tdRaid = document.createElement('td');
+        const tdArena = document.createElement('td');
+        const tdGuild = document.createElement('td');
+        const tdOverall = document.createElement('td');
+        const tdBtnContainer = document.createElement('td');
+        const tdImg = document.createElement('img');
+        const tdBtn = document.createElement('btn');
+        const paragraph = document.createElement('p');
 
-    tdImg.setAttribute('src', `portrait-img/${character.image}.png`);
-    tdImg.dataset.id = index;
+        tdStar.textContent = character.stars + '⭐';
+        paragraph.textContent = character.name;
+        tdWorld.textContent = character.world
+        tdAbyss.textContent = character.abyss;
+        tdBoss.textContent = character["boss hunt"];
+        tdRaid.textContent = character.raid;
+        tdArena.textContent = character.arena;
+        tdGuild.textContent = character["guild wars"];
+        tdOverall.textContent = character.overall();
+        tdBtn.textContent = 'More Info';
 
-    tdImgContainer.classList.add('character-img-container');
-    tdImg.classList.add('character-img');
-    tdBtn.classList.add('moreinfo-btn');
+        tdImg.setAttribute('src', `portrait-img/${character.image}.png`);
+        tdImg.dataset.id = index;
 
-    tdImgContainer.appendChild(tdImg);
-    tdImgContainer.appendChild(paragraph);
-    tdBtnContainer.appendChild(tdBtn);
-    tr.appendChild(tdStar);
-    tr.appendChild(tdImgContainer);
-    tr.appendChild(tdWorld);
-    tr.appendChild(tdAbyss);
-    tr.appendChild(tdBoss);
-    tr.appendChild(tdRaid);
-    tr.appendChild(tdArena);
-    tr.appendChild(tdGuild);
-    tr.appendChild(tdOverall);
-    tr.appendChild(tdBtnContainer);
-    tBody.appendChild(tr);
-});
+        tdImgContainer.classList.add('character-img-container');
+        tdImg.classList.add('character-img');
+        tdBtn.classList.add('moreinfo-btn');
+
+        tdImgContainer.appendChild(tdImg);
+        tdImgContainer.appendChild(paragraph);
+        tdBtnContainer.appendChild(tdBtn);
+        tr.appendChild(tdStar);
+        tr.appendChild(tdImgContainer);
+        tr.appendChild(tdWorld);
+        tr.appendChild(tdAbyss);
+        tr.appendChild(tdBoss);
+        tr.appendChild(tdRaid);
+        tr.appendChild(tdArena);
+        tr.appendChild(tdGuild);
+        tr.appendChild(tdOverall);
+        tr.appendChild(tdBtnContainer);
+        tBody.appendChild(tr);
+    });
+}
 
 /* Image Modal */
-const characterImg = document.querySelectorAll('.character-img');
 const fullImgModal = document.querySelector('.full-img-modal');
 const fullImg = document.querySelector('.full-img');
 const fullImgSkin = document.querySelector('.full-img-skin');
@@ -1738,47 +1741,50 @@ const characterName = document.querySelector('.character-name');
 const characterNameUnderline = document.querySelector('.character-name-underline');
 const prevBtn = document.querySelector('.prev-btn');
 
-characterImg.forEach(image => {
-    image.addEventListener('click', () => {
-        const imgSrc = image.getAttribute('src').slice(13, 19);
-        const target = image.dataset.id;
-        const nextBtn = document.querySelector('.next-btn');
-        
-        desc.textContent = epic7Characters[target].quote;
-        characterName.textContent = epic7Characters[target].name;
-        fullImg.setAttribute('src', '');
-        fullImg.setAttribute('src', `full-img/${imgSrc}idle_normal.png`);
-        fullImgModal.classList.add('open');
-        fullImg.classList.add('open');
-        characterName.classList.add('open');
-        characterNameUnderline.classList.add('open');
-        desc.classList.add('open');
-        console.log(imgSrc);
-
-        if (epic7Characters[target].skin) {
-            nextBtn.classList.add('active');
-        } else {
-            nextBtn.classList.remove('active');
-        }
-
-        nextBtn.addEventListener('click', () => {
-            fullImg.classList.remove('open');
-            fullImgSkin.setAttribute('src', '');
-            fullImgSkin.setAttribute('src', `full-img/skins/${imgSrc}s01_idle_normal.png`);
-            //characterName.textContent = epic7Characters[target].skin;
-            fullImgSkin.classList.add('open');
-            nextBtn.classList.remove('active');
-            prevBtn.classList.add('active');
-        });
-
-        prevBtn.addEventListener('click', () => {
-            fullImgSkin.classList.remove('open');
+function showCharacterImg(arr) {
+   const characterImg = document.querySelectorAll('.character-img'); 
+   characterImg.forEach(image => {
+        image.addEventListener('click', () => {
+            const imgSrc = image.getAttribute('src').slice(13, 19);
+            const target = image.dataset.id;
+            const nextBtn = document.querySelector('.next-btn');
+            
+            desc.textContent = arr[target].quote;
+            characterName.textContent = arr[target].name;
+            fullImg.setAttribute('src', '');
+            fullImg.setAttribute('src', `full-img/${imgSrc}idle_normal.png`);
+            fullImgModal.classList.add('open');
             fullImg.classList.add('open');
-            nextBtn.classList.add('active');
-            prevBtn.classList.remove('active');
+            characterName.classList.add('open');
+            characterNameUnderline.classList.add('open');
+            desc.classList.add('open');
+            console.log(imgSrc);
+
+            if (arr[target].skin) {
+                nextBtn.classList.add('active');
+            } else {
+                nextBtn.classList.remove('active');
+            }
+
+            nextBtn.addEventListener('click', () => {
+                fullImg.classList.remove('open');
+                fullImgSkin.setAttribute('src', '');
+                fullImgSkin.setAttribute('src', `full-img/skins/${imgSrc}s01_idle_normal.png`);
+                //characterName.textContent = arr[target].skin;
+                fullImgSkin.classList.add('open');
+                nextBtn.classList.remove('active');
+                prevBtn.classList.add('active');
+            });
+
+            prevBtn.addEventListener('click', () => {
+                fullImgSkin.classList.remove('open');
+                fullImg.classList.add('open');
+                nextBtn.classList.add('active');
+                prevBtn.classList.remove('active');
+            });
         });
     });
-});
+}
 
 fullImgModal.addEventListener('click', (e) => {
     if (e.target.classList.contains('full-img-modal') 
@@ -1794,3 +1800,312 @@ fullImgModal.addEventListener('click', (e) => {
         prevBtn.classList.remove('active');
     }
 });
+
+/* Filters */ 
+let currentStar = 'all';
+let currentElement = 'all';
+let currentClass = 'all';
+
+function filterCharacters() {
+    const filteredCharacters = epic7Characters.filter((starCharacter) => { 
+        if (currentStar === 'all') {
+            return starCharacter.stars;
+        } else {
+            return starCharacter.stars === currentStar;
+        }
+    }).filter((elementCharacter) => {
+        if (currentElement === 'all') {
+            return elementCharacter.type;
+        } else {
+            return elementCharacter.type === currentElement;
+        }
+    }).filter((classCharacter) => {
+        if (currentClass === 'all') {
+            return classCharacter.class;
+        } else {
+            return classCharacter.class === currentClass;
+        }
+    });
+    return filteredCharacters;
+}
+
+/* Star Filter Buttons */
+const allStarBtn = document.querySelector('.all-star-button');
+const threeStarBtn = document.querySelector('.three-star-button');
+const fourStarBtn = document.querySelector('.four-star-button');
+const fiveStarBtn = document.querySelector('.five-star-button');
+
+allStarBtn.addEventListener('click', () => {
+    currentStar = 'all';
+
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    allStarBtn.classList.add('active');
+    threeStarBtn.classList.remove('active');
+    fourStarBtn.classList.remove('active');
+    fiveStarBtn.classList.remove('active');
+});
+
+threeStarBtn.addEventListener('click', () => {
+    currentStar = 3;
+
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+    
+    threeStarBtn.classList.add('active');
+    allStarBtn.classList.remove('active');
+    fourStarBtn.classList.remove('active');
+    fiveStarBtn.classList.remove('active');
+});
+
+fourStarBtn.addEventListener('click', () => {
+    currentStar = 4;
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    fourStarBtn.classList.add('active');
+    allStarBtn.classList.remove('active');
+    threeStarBtn.classList.remove('active');
+    fiveStarBtn.classList.remove('active');
+});
+
+fiveStarBtn.addEventListener('click', () => {
+    currentStar = 5;
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    fiveStarBtn.classList.add('active');
+    allStarBtn.classList.remove('active');
+    threeStarBtn.classList.remove('active');
+    fourStarBtn.classList.remove('active');
+});
+
+/* Element Filter Buttons */ 
+const allElementBtn = document.querySelector('.all-element-button');
+const fireBtn = document.querySelector('.fire-button');
+const iceBtn = document.querySelector('.ice-button');
+const earthBtn = document.querySelector('.earth-button');
+const lightBtn = document.querySelector('.light-button');
+const darkBtn = document.querySelector('.dark-button');
+
+allElementBtn.addEventListener('click', () => {
+    currentElement = 'all';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    allElementBtn.classList.add('active');
+    fireBtn.classList.remove('active');
+    iceBtn.classList.remove('active');
+    earthBtn.classList.remove('active');
+    lightBtn.classList.remove('active');
+    darkBtn.classList.remove('active');
+});
+
+fireBtn.addEventListener('click', () => {
+    currentElement = "fire";
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    fireBtn.classList.add('active');
+    allElementBtn.classList.remove('active');
+    iceBtn.classList.remove('active');
+    earthBtn.classList.remove('active');
+    lightBtn.classList.remove('active');
+    darkBtn.classList.remove('active');
+});
+
+iceBtn.addEventListener('click', () => {
+    currentElement = "ice";
+
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    iceBtn.classList.add('active');
+    allElementBtn.classList.remove('active');
+    fireBtn.classList.remove('active');
+    earthBtn.classList.remove('active');
+    lightBtn.classList.remove('active');
+    darkBtn.classList.remove('active');
+});
+
+earthBtn.addEventListener('click', () => {
+    currentElement = "earth";
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    earthBtn.classList.add('active');
+    allElementBtn.classList.remove('active');
+    fireBtn.classList.remove('active');
+    iceBtn.classList.remove('active');
+    lightBtn.classList.remove('active');
+    darkBtn.classList.remove('active');
+});
+
+lightBtn.addEventListener('click', () => {
+    currentElement = "light";
+   
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    lightBtn.classList.add('active');
+    allElementBtn.classList.remove('active');
+    fireBtn.classList.remove('active');
+    iceBtn.classList.remove('active');
+    earthBtn.classList.remove('active');
+    darkBtn.classList.remove('active');
+});
+
+darkBtn.addEventListener('click', () => {
+    currentElement = "dark";
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    darkBtn.classList.add('active');
+    allElementBtn.classList.remove('active');
+    fireBtn.classList.remove('active');
+    iceBtn.classList.remove('active');
+    earthBtn.classList.remove('active');
+    lightBtn.classList.remove('active');
+});
+
+/* Class Filter Buttons */ 
+const allClassBtn = document.querySelector('.all-class-button');
+const warriorBtn = document.querySelector('.warrior-button');
+const knightBtn = document.querySelector('.knight-button');
+const rangerBtn = document.querySelector('.ranger-button');
+const assassinBtn = document.querySelector('.assassin-button');
+const mageBtn = document.querySelector('.mage-button');
+const soulBtn = document.querySelector('.soul-button');
+
+allClassBtn.addEventListener('click', () => {
+    currentClass = 'all';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    allClassBtn.classList.add('active');
+    warriorBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+warriorBtn.addEventListener('click', () => {
+    currentClass = 'warrior';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    warriorBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+knightBtn.addEventListener('click', () => {
+    currentClass = 'knight';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    knightBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    warriorBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+rangerBtn.addEventListener('click', () => {
+    currentClass = 'ranger';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    rangerBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    warriorBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+assassinBtn.addEventListener('click', () => {
+    currentClass = 'assassin';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    assassinBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    warriorBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+mageBtn.addEventListener('click', () => {
+    currentClass = 'mage';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    mageBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    warriorBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    soulBtn.classList.remove('active');
+});
+
+soulBtn.addEventListener('click', () => {
+    currentClass = 'soul weaver';
+    
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+
+    soulBtn.classList.add('active');
+    allClassBtn.classList.remove('active');
+    warriorBtn.classList.remove('active');
+    knightBtn.classList.remove('active');
+    rangerBtn.classList.remove('active');
+    assassinBtn.classList.remove('active');
+    mageBtn.classList.remove('active');
+});
+
+/* Populate Page*/
+showCharacters(epic7Characters);
+showCharacterImg(epic7Characters);

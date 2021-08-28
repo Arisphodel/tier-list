@@ -194,11 +194,6 @@ Button
     color: white;
 }
 
-.all-star-button.active {
-    background-color: var(--main-color);
-    color: white;
-}
-
 /* Element Button */
 .element-btn-container {
     margin-left: 30px;
@@ -213,11 +208,6 @@ Button
 }
 
 .element-btn.active {
-    background-color: var(--main-color);
-    color: white;
-}
-
-.all-element-button.active {
     background-color: var(--main-color);
     color: white;
 }
@@ -244,13 +234,13 @@ Button
     color: white;
 }
 
-.all-class-button.active {
-    background-color: var(--main-color);
-    color: white;
-}
-
 .class-btn img {
     width: 15px;
+}
+
+.all-btn.active {
+    background-color: var(--main-color);
+    color: white;
 }
 
 .all-btn:hover,

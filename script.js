@@ -193,7 +193,7 @@ const epic7Characters = [
     },
     {
         name: "Tempest Surin",
-        stars: 5,
+        stars: 4,
         world: 7,
         abyss: 7,
         "boss hunt": 7.5,
@@ -1811,299 +1811,65 @@ function filterCharacters() {
         if (currentStar === 'all') {
             return starCharacter.stars;
         } else {
-            return starCharacter.stars === currentStar;
+            return starCharacter.stars == currentStar;
         }
     }).filter((elementCharacter) => {
         if (currentElement === 'all') {
             return elementCharacter.type;
         } else {
-            return elementCharacter.type === currentElement;
+            return elementCharacter.type == currentElement;
         }
     }).filter((classCharacter) => {
         if (currentClass === 'all') {
             return classCharacter.class;
         } else {
-            return classCharacter.class === currentClass;
+            return classCharacter.class == currentClass;
         }
     });
     return filteredCharacters;
 }
 
-/* Star Filter Buttons */
-const allStarBtn = document.querySelector('.all-star-button');
-const threeStarBtn = document.querySelector('.three-star-button');
-const fourStarBtn = document.querySelector('.four-star-button');
-const fiveStarBtn = document.querySelector('.five-star-button');
+const starsBtn = document.querySelectorAll('[data-star]');
+const elementsBtn = document.querySelectorAll('[data-element]');
+const classesBtn = document.querySelectorAll('[data-class]');
 
-allStarBtn.addEventListener('click', () => {
-    currentStar = 'all';
-
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    allStarBtn.classList.add('active');
-    threeStarBtn.classList.remove('active');
-    fourStarBtn.classList.remove('active');
-    fiveStarBtn.classList.remove('active');
+starsBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentStar = button.dataset.star;
+        starsBtn.forEach((button) => {
+            button.classList.remove('active');
+        });
+        button.classList.add('active');
+        tBody.textContent = '';
+        showCharacters(filterCharacters());
+        showCharacterImg(filterCharacters());
+    });
 });
 
-threeStarBtn.addEventListener('click', () => {
-    currentStar = 3;
-
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-    
-    threeStarBtn.classList.add('active');
-    allStarBtn.classList.remove('active');
-    fourStarBtn.classList.remove('active');
-    fiveStarBtn.classList.remove('active');
+elementsBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentElement = button.dataset.element;
+        elementsBtn.forEach((button) => {
+            button.classList.remove('active');
+        });
+        button.classList.add('active');
+        tBody.textContent = '';
+        showCharacters(filterCharacters());
+        showCharacterImg(filterCharacters());
+    });
 });
 
-fourStarBtn.addEventListener('click', () => {
-    currentStar = 4;
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    fourStarBtn.classList.add('active');
-    allStarBtn.classList.remove('active');
-    threeStarBtn.classList.remove('active');
-    fiveStarBtn.classList.remove('active');
-});
-
-fiveStarBtn.addEventListener('click', () => {
-    currentStar = 5;
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    fiveStarBtn.classList.add('active');
-    allStarBtn.classList.remove('active');
-    threeStarBtn.classList.remove('active');
-    fourStarBtn.classList.remove('active');
-});
-
-/* Element Filter Buttons */ 
-const allElementBtn = document.querySelector('.all-element-button');
-const fireBtn = document.querySelector('.fire-button');
-const iceBtn = document.querySelector('.ice-button');
-const earthBtn = document.querySelector('.earth-button');
-const lightBtn = document.querySelector('.light-button');
-const darkBtn = document.querySelector('.dark-button');
-
-allElementBtn.addEventListener('click', () => {
-    currentElement = 'all';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    allElementBtn.classList.add('active');
-    fireBtn.classList.remove('active');
-    iceBtn.classList.remove('active');
-    earthBtn.classList.remove('active');
-    lightBtn.classList.remove('active');
-    darkBtn.classList.remove('active');
-});
-
-fireBtn.addEventListener('click', () => {
-    currentElement = "fire";
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    fireBtn.classList.add('active');
-    allElementBtn.classList.remove('active');
-    iceBtn.classList.remove('active');
-    earthBtn.classList.remove('active');
-    lightBtn.classList.remove('active');
-    darkBtn.classList.remove('active');
-});
-
-iceBtn.addEventListener('click', () => {
-    currentElement = "ice";
-
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    iceBtn.classList.add('active');
-    allElementBtn.classList.remove('active');
-    fireBtn.classList.remove('active');
-    earthBtn.classList.remove('active');
-    lightBtn.classList.remove('active');
-    darkBtn.classList.remove('active');
-});
-
-earthBtn.addEventListener('click', () => {
-    currentElement = "earth";
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    earthBtn.classList.add('active');
-    allElementBtn.classList.remove('active');
-    fireBtn.classList.remove('active');
-    iceBtn.classList.remove('active');
-    lightBtn.classList.remove('active');
-    darkBtn.classList.remove('active');
-});
-
-lightBtn.addEventListener('click', () => {
-    currentElement = "light";
-   
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    lightBtn.classList.add('active');
-    allElementBtn.classList.remove('active');
-    fireBtn.classList.remove('active');
-    iceBtn.classList.remove('active');
-    earthBtn.classList.remove('active');
-    darkBtn.classList.remove('active');
-});
-
-darkBtn.addEventListener('click', () => {
-    currentElement = "dark";
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    darkBtn.classList.add('active');
-    allElementBtn.classList.remove('active');
-    fireBtn.classList.remove('active');
-    iceBtn.classList.remove('active');
-    earthBtn.classList.remove('active');
-    lightBtn.classList.remove('active');
-});
-
-/* Class Filter Buttons */ 
-const allClassBtn = document.querySelector('.all-class-button');
-const warriorBtn = document.querySelector('.warrior-button');
-const knightBtn = document.querySelector('.knight-button');
-const rangerBtn = document.querySelector('.ranger-button');
-const assassinBtn = document.querySelector('.assassin-button');
-const mageBtn = document.querySelector('.mage-button');
-const soulBtn = document.querySelector('.soul-button');
-
-allClassBtn.addEventListener('click', () => {
-    currentClass = 'all';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    allClassBtn.classList.add('active');
-    warriorBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-warriorBtn.addEventListener('click', () => {
-    currentClass = 'warrior';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    warriorBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-knightBtn.addEventListener('click', () => {
-    currentClass = 'knight';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    knightBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    warriorBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-rangerBtn.addEventListener('click', () => {
-    currentClass = 'ranger';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    rangerBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    warriorBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-assassinBtn.addEventListener('click', () => {
-    currentClass = 'assassin';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    assassinBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    warriorBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-mageBtn.addEventListener('click', () => {
-    currentClass = 'mage';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    mageBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    warriorBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    soulBtn.classList.remove('active');
-});
-
-soulBtn.addEventListener('click', () => {
-    currentClass = 'soul weaver';
-    
-    tBody.textContent = '';
-    showCharacters(filterCharacters());
-    showCharacterImg(filterCharacters());
-
-    soulBtn.classList.add('active');
-    allClassBtn.classList.remove('active');
-    warriorBtn.classList.remove('active');
-    knightBtn.classList.remove('active');
-    rangerBtn.classList.remove('active');
-    assassinBtn.classList.remove('active');
-    mageBtn.classList.remove('active');
+classesBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        currentClass = button.dataset.class;
+        classesBtn.forEach((button) => {
+            button.classList.remove('active');
+        });
+        button.classList.add('active');
+        tBody.textContent = '';
+        showCharacters(filterCharacters());
+        showCharacterImg(filterCharacters());
+    });
 });
 
 /* Populate Page*/

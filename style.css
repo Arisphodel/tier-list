@@ -8,6 +8,7 @@ Variables
 
 :root {
     --main-color: #009879;
+    --main-gray: #414a4c;
 }
 
 /*
@@ -30,12 +31,13 @@ Global Styles
 
 header h1 {
     text-align: center;
-    margin-bottom: .8rem;
+    margin-bottom: .25rem;
     font-size: 3rem;
+    color: var(--main-gray);
 }
 
 .underline {
-    width: 5rem;
+    width: 5.5rem;
     height: 0.25rem;
     background: var(--main-color);
     margin-left: auto;
@@ -116,7 +118,7 @@ Image
 
 .character-img {
     max-width: 60px;
-    border: solid 2px black;
+    border: solid 2px rgb(15,15,15);
     border-radius: 30px;
     object-fit: cover;
     margin-bottom: 2px;

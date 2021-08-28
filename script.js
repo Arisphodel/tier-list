@@ -721,7 +721,7 @@ const epic7Characters = [
         overall: function() {
             return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
         },
-        class: "warrior",
+        class: "knight",
         type: "light",
         image: "c2008_s",
         quote: `A destructive super cute mercenary, the nickname of Super Cute Guardian of the Red Flame fits Armin perfectly. 
@@ -740,8 +740,8 @@ const epic7Characters = [
         overall: function() {
             return ((this.world + this.abyss + this["boss hunt"] + this.raid + this.arena + this['guild wars']) / 6).toFixed(1);
         },
-        class: "knight",
-        type: "light",
+        class: "warrior",
+        type: "dark",
         image: "c2095_s",
         quote: `A designer who learned how to sew when she was taken in by Straze as a girl. 
         After realizing that ever since he took hold of Fastus, Straze changed, she decides to look for a model to put a stop to his schemes.`,
@@ -1619,7 +1619,7 @@ const epic7Characters = [
 
 epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-/* Sidebar */
+//Sidebar
 const sideBarToggle = document.querySelector('.sidebar-btn');
 const navLinksOverlay = document.querySelector('.nav-overlay');
 const navLinks = document.querySelector('.nav-links');
@@ -1630,29 +1630,26 @@ sideBarToggle.addEventListener('click', () => {
 });
 
 navLinksOverlay.addEventListener('click', (e) => {
-    console.log(e);
     if (e.target.classList.contains('nav-overlay')) {
         navLinks.classList.remove('nav-links-active');
         navLinksOverlay.classList.remove('nav-overlay-active');
     }
 });
 
-/* Random Theme Generator */
+//Random Theme Generator
 const themeBtn = document.querySelector('.theme');
 const rgbButton = document.querySelector('.rgb');
 const rootCSS = document.querySelector(':root');
 const numberHex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
-let rgb = 0;
+let rgb;
 
 rgbButton.addEventListener('click', () => {
     let style = getComputedStyle(rootCSS).getPropertyValue('--main-color');
-    console.log(style);
     if (rgb) {
         clearInterval(rgb);
         setTimeout(() =>  {rootCSS.style.setProperty('--main-color', '#009879') }, 0);
         rgb = false; 
     } else {
-        console.log('cu');
         rgb = window.setInterval(changeSiteColor, 1000);
     }
 });
@@ -1663,8 +1660,6 @@ themeBtn.addEventListener('click', () => {
 
 function changeSiteColor() {
     const randomHexCode = generateRandomHex();
-    
-    //console.log(randomHexCode);
     rootCSS.style.setProperty('--main-color', randomHexCode);
 
     function generateRandomHex() {
@@ -1677,10 +1672,16 @@ function changeSiteColor() {
     }
 }
 
-/* Characters */
+//Characters
 const tBody = document.querySelector('tbody');
 
 function showCharacters(arr) {
+    const noResults = document.querySelector('.no-results');
+    if (arr.length === 0) {
+        noResults.style.display = 'block';
+    } else {
+        noResults.style.display = 'none';
+    }
     arr.forEach((character, index) => {
         const tr = document.createElement('tr');
         const tdStar = document.createElement('td');
@@ -1732,7 +1733,7 @@ function showCharacters(arr) {
     });
 }
 
-/* Image Modal */
+//Image Modal
 const fullImgModal = document.querySelector('.full-img-modal');
 const fullImg = document.querySelector('.full-img');
 const fullImgSkin = document.querySelector('.full-img-skin');
@@ -1758,7 +1759,6 @@ function showCharacterImg(arr) {
             characterName.classList.add('open');
             characterNameUnderline.classList.add('open');
             desc.classList.add('open');
-            console.log(imgSrc);
 
             if (arr[target].skin) {
                 nextBtn.classList.add('active');
@@ -1801,13 +1801,20 @@ fullImgModal.addEventListener('click', (e) => {
     }
 });
 
-/* Filters */ 
+//Filters 
+let searchBarValue;
 let currentStar = 'all';
 let currentElement = 'all';
 let currentClass = 'all';
 
 function filterCharacters() {
-    const filteredCharacters = epic7Characters.filter((starCharacter) => { 
+    const filteredCharacters = epic7Characters.filter((letterCharacter) => {
+        if (searchBarValue == undefined) {
+            return letterCharacter;
+        } else {
+            return letterCharacter.name.toLowerCase().indexOf(searchBarValue) > -1;
+        }
+    }).filter((starCharacter) => { 
         if (currentStar === 'all') {
             return starCharacter.stars;
         } else {
@@ -1829,9 +1836,18 @@ function filterCharacters() {
     return filteredCharacters;
 }
 
+const searchBar = document.getElementById('searchBar');
 const starsBtn = document.querySelectorAll('[data-star]');
 const elementsBtn = document.querySelectorAll('[data-element]');
 const classesBtn = document.querySelectorAll('[data-class]');
+window.onload = searchBar.value = '';
+
+searchBar.addEventListener('keyup', () => {
+    searchBarValue = searchBar.value.toLowerCase();
+    tBody.textContent = '';
+    showCharacters(filterCharacters());
+    showCharacterImg(filterCharacters());
+});
 
 starsBtn.forEach((button) => {
     button.addEventListener('click', () => {
@@ -1872,6 +1888,6 @@ classesBtn.forEach((button) => {
     });
 });
 
-/* Populate Page*/
+//Populate Page
 showCharacters(epic7Characters);
 showCharacterImg(epic7Characters);

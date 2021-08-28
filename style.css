@@ -27,6 +27,7 @@ Global Styles
 .main {
     padding: 5rem;
     background-color: #f1f5f8;
+    min-height: 110vh;
 }
 
 header h1 {
@@ -43,6 +44,47 @@ header h1 {
     margin-left: auto;
     margin-right: auto;
     transition: all 0.4s;
+}
+
+/*
+=============== 
+Search Bar
+===============
+*/
+
+.search-container {
+    position: relative;
+    color: var(--main-gray);
+}
+
+#searchBar {
+    margin-top: 4rem;
+    padding: .7rem;
+    width: 280px;
+    border: thin var(--main-color) solid;
+    border-radius: 3px;
+    background-color: transparent;
+    transition: all 0.3s ease-out;
+    color: var(--main-gray);
+}
+
+#searchBar:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    top: 69%;
+    left: 250px;
+    pointer-events: none;
+}
+
+.no-results {
+    text-align: center;
+    font-size: 1.4rem;
+    display: none;
+    color: var(--main-gray);
 }
 
 /*
@@ -168,7 +210,7 @@ Button
 .btn-container {
     display: flex;
     align-items: center;
-    margin-top: 4rem;
+    margin-top: 1rem;
     width: 100%;
     height: 30px;
 }

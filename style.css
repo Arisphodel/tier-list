@@ -53,31 +53,40 @@ Search Bar
 */
 
 .search-container {
-    position: relative;
     color: var(--main-gray);
-}
-
-#searchBar {
-    margin-top: 4rem;
-    padding: .7rem;
-    width: 280px;
+    background-color: transparent;
     border: thin var(--main-color) solid;
     border-radius: 3px;
-    background-color: transparent;
+    margin-top: 4rem;
+    width: 280px;
+    display: flex;
+    align-items: center;
     transition: all 0.3s ease-out;
-    color: var(--main-gray);
 }
 
-#searchBar:focus {
+.search-container:focus-within {
     outline: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
+#searchBar {
+    color: var(--main-gray);
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    padding: .6rem;
+}
+
+#searchBar:focus {
+    outline: none;
+}
+
 .search-icon {
-    position: absolute;
-    top: 69%;
-    left: 250px;
+    color: white;
+    background-color: var(--main-color);
     pointer-events: none;
+    user-select: none;
+    padding: .4rem;
 }
 
 .no-results {

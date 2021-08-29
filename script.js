@@ -1617,6 +1617,7 @@ const epic7Characters = [
     },
 ];
 
+//Sort Characters array by name property alphabetical order
 epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
 
 //Sidebar
@@ -1885,6 +1886,54 @@ classesBtn.forEach((button) => {
         tBody.textContent = '';
         showCharacters(filterCharacters());
         showCharacterImg(filterCharacters());
+    });
+});
+
+const tableColumns = document.querySelectorAll('[data-columnname]');
+
+function sortCharacters(prop, order) {
+    if (order) {
+        //Need either to remove overall method or to find a way to turn a string into a method
+        if (prop == 'overall') {
+            epic7Characters.sort((a, b) => (a.name > b.name) ? -1 : 1)
+            .sort((a, b) => (a.overall() > b.overall()) ? -1 : 1);
+            tBody.textContent = '';
+            showCharacters(filterCharacters());
+            showCharacterImg(filterCharacters());
+
+        } else {
+            epic7Characters.sort((a, b) => (a.name > b.name) ? -1 : 1)
+            .sort((a, b) => (a[prop] > b[prop]) ? -1 : 1);
+            tBody.textContent = '';
+            showCharacters(filterCharacters());
+            showCharacterImg(filterCharacters());
+        }
+    } else {
+        if (prop == 'overall') {
+            epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
+            .sort((a, b) => (a.overall() > b.overall()) ? 1 : -1);
+            tBody.textContent = '';
+            showCharacters(filterCharacters());
+            showCharacterImg(filterCharacters());
+        } else {
+            epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
+            .sort((a, b) => (a[prop] > b[prop]) ? 1 : -1);
+            tBody.textContent = '';
+            showCharacters(filterCharacters());
+            showCharacterImg(filterCharacters()); 
+        }
+    }
+}
+
+tableColumns.forEach(column => {
+    column.addEventListener('click', (e) => {
+        let sortName = column.dataset.columnname;
+        const sortOrder = column.classList.contains('alphabeticalOrder') ? true : false;
+        sortCharacters(sortName, sortOrder);
+        tableColumns.forEach(column => {
+            //I don't really understand what is going on here
+            column.classList[e.target == column ? 'toggle' : 'remove']('alphabeticalOrder');
+        }); 
     });
 });
 

@@ -1620,7 +1620,7 @@ const epic7Characters = [
 //Sort Characters array by name property alphabetical order
 epic7Characters.sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-//Sidebar
+// —————— Side Bar ———————————————————————————————————————————————————————————————
 const sideBarToggle = document.querySelector('.sidebar-btn');
 const navLinksOverlay = document.querySelector('.nav-overlay');
 const navLinks = document.querySelector('.nav-links');
@@ -1637,7 +1637,7 @@ navLinksOverlay.addEventListener('click', (e) => {
     }
 });
 
-//Random Theme Generator
+// —————— Random Theme Generator ———————————————————————————————————————————————————————————————
 const themeBtn = document.querySelector('.theme');
 const rgbButton = document.querySelector('.rgb');
 const rootCSS = document.querySelector(':root');
@@ -1673,7 +1673,7 @@ function changeSiteColor() {
     }
 }
 
-//Characters
+// —————— Show Characters ———————————————————————————————————————————————————————————————
 const tBody = document.querySelector('tbody');
 
 function showCharacters(arr) {
@@ -1734,7 +1734,7 @@ function showCharacters(arr) {
     });
 }
 
-//Image Modal
+// —————— Full Image Modal ———————————————————————————————————————————————————————————————
 const fullImgModal = document.querySelector('.full-img-modal');
 const fullImg = document.querySelector('.full-img');
 const fullImgSkin = document.querySelector('.full-img-skin');
@@ -1802,7 +1802,7 @@ fullImgModal.addEventListener('click', (e) => {
     }
 });
 
-//Filters 
+// —————— Filters ——————————————————————————————————————————————————————————————— 
 let searchBarValue;
 let currentStar = 'all';
 let currentElement = 'all';
@@ -1931,12 +1931,11 @@ tableColumns.forEach(column => {
         const sortOrder = column.classList.contains('alphabeticalOrder') ? true : false;
         sortCharacters(sortName, sortOrder);
         tableColumns.forEach(column => {
-            //I don't really understand what is going on here
             column.classList[e.target == column ? 'toggle' : 'remove']('alphabeticalOrder');
         }); 
     });
 });
 
-//Populate Page
+// —————— Populate Page ———————————————————————————————————————————————————————————————
 showCharacters(epic7Characters);
 showCharacterImg(epic7Characters);
